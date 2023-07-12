@@ -1,0 +1,56 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Maven Pro', sans-serif;
+}
+
+
+/*-----HEADER-----*/
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #363534;
+}
+
+header h1 {
+    font-family: 'Modak';
+    font-weight: 300;
+    font-size: 48px;
+    color: #FFF
+}
+
+/*-----MAIN-----*/
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button img {
+    width: 100px;
+    height: 100px;
+}
+
+.main--options {
+    display: flex;
+    gap: 3em;
+}
+
+/*-----FOOTER-----*/
+
+footer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ad0505;
+    height: 4vh;
+    width: 100%;
+    bottom: 0;
+}

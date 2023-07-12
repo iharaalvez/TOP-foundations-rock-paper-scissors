@@ -5,8 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Odin Rock Paper Scissors</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Modak&family=Maven+Pro"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="./app.js"></script>
   </head>
-  <script src="./app.js"></script>
-
-  <body></body>
+  <body>
+    <header>
+      <h1>ROCK PAPER SCISSORS</h1>
+    </header>
+    <main>
+      <section class="main--scoreboard"></section>
+      <section class="main--options">
+        <div class="main--player-options">
+          <h4>Player</h4>
+          <h5>Score: </h5><p id="player--score"></p>
+          <button id="btn-playerPaper">
+            <img src="./images/paper.png" />
+          </button>
+          <button id="btn-playerRock">
+            <img src="./images/rock.png" />
+          </button>
+          <button id="btn-playerScissors">
+            <img src="./images/scissors.png" />
+          </button>
+        </div>
+        <div class="main--computer-options">
+          <h4>Computer</h4>
+          <h5>Score: </h5><p id="computer--score"></p>
+          <button id="btn-computerPaper" disabled>
+            <img src="./images/paper.png" />
+          </button>
+          <button id="btn-computerRock" disabled>
+            <img src="./images/rock.png" />
+          </button>
+          <button id="btn-computerScissors" disabled>
+            <img src="./images/scissors.png" />
+          </button>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <small>
+        Copyright ©
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        Mapachin
+      </small>
+    </footer>
+  </body>
 </html>

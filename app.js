@@ -1,7 +1,7 @@
-let pcPoints = 0;
+let computerPoints = 0;
 let playerPoints = 0;
-let roundsPlayed = 0;
-const totalRounds = 5;
+
+/// GAME DYNAMICS
 
 function getComputerChoice() {
   const pcChoices = ["rock", "paper", "scissors"];
@@ -20,14 +20,27 @@ function playRound(playerSelection, computerSelection) {
     playerPoints++;
   } else {
     console.log("Computer won!");
-    pcPoints++;
+    computerPoints++;
   }
 }
 
-function game() {
-  while (roundsPlayed < totalRounds) {
-    let playerSelection = window.prompt("rock, paper, or scissors?");
-    playerSelection = playerSelection.toLowerCase();
+// UI OPTIONS
+
+const playerScore = document.getElementById("player--score");
+const computerScore = document.getElementById("computer--score");
+const playerRockBtn = document.getElementById("btn-playerRock");
+const playerPaperBtn = document.getElementById("btn-playerPaper");
+const playerScissorsBtn = document.getElementById("btn-playerScissors");
+const computerRockBtn = document.getElementById("btn-computerRock");
+const computerPaperBtn = document.getElementById("btn-computerPaper");
+const computerScissorsBtn = document.getElementById("btn-computerScissors");
+
+playerPaperBtn.addEventListener(handleClick("paper"));
+playerRockBtn.addEventListener(handleClick("rock"));
+playerScissorsBtn.addEventListener(handleClick("scissors"));
+
+function handleClick(playerSelection) {
+
     console.log("Your choice is " + playerSelection);
 
     const computerSelection = getComputerChoice();
@@ -36,16 +49,10 @@ function game() {
     playRound(playerSelection, computerSelection);
 
     console.log(
-      "Scores: Player " + playerPoints + " || " + pcPoints + " Computer"
+      "Scores: Player " + playerPoints + " || " + computerPoints + " Computer"
     );
-    roundsPlayed++;
-  }
 
-  if (playerPoints > pcPoints) console.log("You won this match!");
-  else if (playerPoints < pcPoints) console.log("Computer won this match!");
-  else console.log("This match was a tie!");
-
-  console.log("Game over! Reload to play again.");
+    if (playerPoints == 5 || computerPoints == 5) {
+      console.log("Game over! Reload to play again.");
+    }
 }
-
-game();
