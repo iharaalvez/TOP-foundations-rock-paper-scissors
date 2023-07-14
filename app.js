@@ -123,6 +123,7 @@ function handleClick(playerSelection) {
 function handleRestart() {
   playerPoints = 0
   computerPoints = 0
+  rounds = 0;
   displayResult.textContent = ""
   displayHistorical.textContent = ""
   playerScore.textContent = `${playerPoints}`;
