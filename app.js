@@ -1,58 +1,137 @@
 let computerPoints = 0;
 let playerPoints = 0;
+let rounds = 0;
 
 /// GAME DYNAMICS
 
 function getComputerChoice() {
   const pcChoices = ["rock", "paper", "scissors"];
-  return pcChoices[Math.floor(Math.random() * pcChoices.length)];
+  const choice = pcChoices[Math.floor(Math.random() * pcChoices.length)];
+
+  switch (choice) {
+    case "rock":
+      computerRockBtn.style.cssText = "border: 4px #ad0505 solid;";
+      computerPaperBtn.style.cssText = null;
+      computerScissorsBtn.style.cssText = null;
+      break;
+    case "paper":
+      computerRockBtn.style.cssText = null;
+      computerPaperBtn.style.cssText = "border: 4px #ad0505 solid;";
+      computerScissorsBtn.style.cssText = null;
+      break;
+    case "scissors":
+      computerRockBtn.style.cssText = null;
+      computerPaperBtn.style.cssText = null;
+      computerScissorsBtn.style.cssText = "border: 4px #ad0505 solid;";
+      break;
+  }
+  return choice;
+}
+
+function getPlayerChoice(choice) {
+  switch (choice) {
+    case "rock":
+      playerRockBtn.style.cssText = "border: 4px #043dcc solid;";
+      playerPaperBtn.style.cssText = null;
+      playerScissorsBtn.style.cssText = null;
+      break;
+    case "paper":
+      playerRockBtn.style.cssText = null;
+      playerPaperBtn.style.cssText = "border: 4px #043dcc solid;";
+      playerScissorsBtn.style.cssText = null;
+      break;
+    case "scissors":
+      playerRockBtn.style.cssText = null;
+      playerPaperBtn.style.cssText = null;
+      playerScissorsBtn.style.cssText = "border: 4px #043dcc solid;";
+      break;
+  }
 }
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    console.log("It was a tie!");
+    displayResult.textContent = "It was a tie!\n";
+    displayHistorical.textContent =
+      `${rounds}. ` + displayResult.textContent + displayHistorical.textContent;
   } else if (
     (playerSelection === "rock" && computerSelection === "scissors") ||
     (playerSelection === "paper" && computerSelection === "rock") ||
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
-    console.log("You won!");
     playerPoints++;
+    displayResult.textContent = "You won!\n";
+    displayHistorical.textContent =
+      `${rounds}. ` + displayResult.textContent + displayHistorical.textContent;
+    playerScore.textContent = `${playerPoints}`;
   } else {
-    console.log("Computer won!");
     computerPoints++;
+    displayResult.textContent = "Computer won!\n";
+    displayHistorical.textContent =
+      `${rounds}. ` + displayResult.textContent + displayHistorical.textContent;
+    computerScore.textContent = `${computerPoints}`;
   }
 }
 
 // UI OPTIONS
 
-const playerScore = document.getElementById("player--score");
-const computerScore = document.getElementById("computer--score");
-const playerRockBtn = document.getElementById("btn-playerRock");
-const playerPaperBtn = document.getElementById("btn-playerPaper");
-const playerScissorsBtn = document.getElementById("btn-playerScissors");
-const computerRockBtn = document.getElementById("btn-computerRock");
-const computerPaperBtn = document.getElementById("btn-computerPaper");
-const computerScissorsBtn = document.getElementById("btn-computerScissors");
+const playerScore = document.querySelector("#player-score");
+const computerScore = document.querySelector("#computer-score");
+const playerRockBtn = document.querySelector("#btn-playerRock");
+const playerPaperBtn = document.querySelector("#btn-playerPaper");
+const playerScissorsBtn = document.querySelector("#btn-playerScissors");
+const computerRockBtn = document.querySelector("#btn-computerRock");
+const computerPaperBtn = document.querySelector("#btn-computerPaper");
+const computerScissorsBtn = document.querySelector("#btn-computerScissors");
+const displayResult = document.querySelector("#display-result");
+const displayHistorical = document.querySelector("#display-historical");
+const restartBtn = document.querySelector("#btn-restart");
+const endgameModal = document.querySelector(".modal-endgame");
 
-playerPaperBtn.addEventListener(handleClick("paper"));
-playerRockBtn.addEventListener(handleClick("rock"));
-playerScissorsBtn.addEventListener(handleClick("scissors"));
+computerScore.textContent = `${computerPoints}`;
+playerScore.textContent = `${playerPoints}`;
+
+playerPaperBtn.addEventListener("click", () => handleClick("paper"));
+playerRockBtn.addEventListener("click", () => handleClick("rock"));
+playerScissorsBtn.addEventListener("click", () => handleClick("scissors"));
+
+restartBtn.addEventListener("click", () => handleRestart());
+
 
 function handleClick(playerSelection) {
+  rounds++;
 
-    console.log("Your choice is " + playerSelection);
+  getPlayerChoice(playerSelection);
 
-    const computerSelection = getComputerChoice();
-    console.log("Computer chose " + computerSelection);
+  const computerSelection = getComputerChoice();
+  playRound(playerSelection, computerSelection);
 
-    playRound(playerSelection, computerSelection);
+  console.log(
+    "Scores: Player " + playerPoints + " || " + computerPoints + " Computer"
+  );
 
-    console.log(
-      "Scores: Player " + playerPoints + " || " + computerPoints + " Computer"
-    );
+  if (playerPoints == 5 || computerPoints == 5) {
+    endgameModal.classList.add("modal-open");
+    const resultEndgame = document.querySelector("#message-endgame");
+    if (playerPoints > computerPoints)
+      resultEndgame.textContent = "You have won!";
+    else resultEndgame.textContent = "The computer has won!";
 
-    if (playerPoints == 5 || computerPoints == 5) {
-      console.log("Game over! Reload to play again.");
-    }
+    console.log("Game over! Reload to play again.");
+  }
+}
+
+function handleRestart() {
+  playerPoints = 0
+  computerPoints = 0
+  displayResult.textContent = ""
+  displayHistorical.textContent = ""
+  playerScore.textContent = `${playerPoints}`;
+  computerScore.textContent = `${computerPoints}`;
+  computerRockBtn.style.cssText = null;
+  computerPaperBtn.style.cssText = null;
+  computerScissorsBtn.style.cssText = null;
+  playerRockBtn.style.cssText = null;
+  playerPaperBtn.style.cssText = null;
+  playerScissorsBtn.style.cssText = null;
+  endgameModal.classList.remove('modal-open')
 }

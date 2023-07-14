@@ -1,56 +1,192 @@
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-    font-family: 'Maven Pro', sans-serif;
+  font-family: "Maven Pro", sans-serif;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
 
 /*-----HEADER-----*/
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #363534;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #363534;
 }
 
 header h1 {
-    font-family: 'Modak';
-    font-weight: 300;
-    font-size: 48px;
-    color: #FFF
+  font-family: "Modak";
+  font-weight: 300;
+  font-size: 48px;
+  color: #fff;
 }
 
 /*-----MAIN-----*/
 
 main {
+  margin: 10rem 0;
+}
+
+.options-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+main,
+#player-score,
+#computer-score,
+.player-container,
+.computer-container,
+.main-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+#player-score,
+#computer-score {
+  font-family: fantasy;
+  font-size: 32px;
+}
+
+
+.selectionImg {
+  width: 100px;
+  height: 100px;
+}
+
+.player-options,
+.computer-options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.player-options button,
+.computer-options button {
+  border: 4px #fff solid;
+  border-radius: 50px;
+}
+
+.player-options button :hover {
+    outline: none;
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+  
+
+#display-result {
+  font-size: large;
+  font-weight: 600;
+}
+
+#display-historical {
+  font-size: medium;
+  font-weight: 400;
+}
+
+/*-----MODAL-----*/
+
+.modal-container {
+    position: relative;
+  }
+  
+  .modal-endgame {
+    display: none; /* Ocultar el modal inicialmente */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    z-index: 999; /* Asegurar que el modal esté por encima de otros elementos */
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    width: 400px;
+    max-width: 90%;
+    margin: 200px auto;
+    padding: 80px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
-}
+    flex-direction: column;
+    gap: 2rem;
+  }
 
-button img {
-    width: 100px;
-    height: 100px;
-}
+  .modal-content p {
+    font-weight: 600;
+    font-size: 32px;
+  }
 
-.main--options {
-    display: flex;
-    gap: 3em;
-}
+  #btn-restart {
+    padding: 1rem;
+    border: none;
+    box-shadow: 0 0 10px rgba(4, 6, 88, 0.3);
+    background-color: #032c92;
+    color: #FFF;
+    border-radius: 1rem;
+  }
+  
+  /* Estilos para animar la apertura y cierre del modal */
+  .modal-open {
+    display: block;
+    animation: modalFadeIn 0.3s ease-in-out;
+  }
+  
+  .modal-close {
+    animation: modalFadeOut 0.3s ease-in-out;
+  }
+  
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes modalFadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+  }
 
 /*-----FOOTER-----*/
 
 footer {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ad0505;
-    height: 4vh;
-    width: 100%;
-    bottom: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  font-size: 20px;
+  height: 4vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ad0505;
 }
