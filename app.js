@@ -96,18 +96,12 @@ playerScissorsBtn.addEventListener("click", () => handleClick("scissors"));
 
 restartBtn.addEventListener("click", () => handleRestart());
 
-
 function handleClick(playerSelection) {
   rounds++;
-
   getPlayerChoice(playerSelection);
 
   const computerSelection = getComputerChoice();
   playRound(playerSelection, computerSelection);
-
-  console.log(
-    "Scores: Player " + playerPoints + " || " + computerPoints + " Computer"
-  );
 
   if (playerPoints == 5 || computerPoints == 5) {
     endgameModal.classList.add("modal-open");
@@ -115,17 +109,15 @@ function handleClick(playerSelection) {
     if (playerPoints > computerPoints)
       resultEndgame.textContent = "You have won!";
     else resultEndgame.textContent = "The computer has won!";
-
-    console.log("Game over! Reload to play again.");
   }
 }
 
 function handleRestart() {
-  playerPoints = 0
-  computerPoints = 0
+  playerPoints = 0;
+  computerPoints = 0;
   rounds = 0;
-  displayResult.textContent = ""
-  displayHistorical.textContent = ""
+  displayResult.textContent = "";
+  displayHistorical.textContent = "";
   playerScore.textContent = `${playerPoints}`;
   computerScore.textContent = `${computerPoints}`;
   computerRockBtn.style.cssText = null;
@@ -134,5 +126,5 @@ function handleRestart() {
   playerRockBtn.style.cssText = null;
   playerPaperBtn.style.cssText = null;
   playerScissorsBtn.style.cssText = null;
-  endgameModal.classList.remove('modal-open')
+  endgameModal.classList.remove("modal-open");
 }
