@@ -5,8 +5,74 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Odin Rock Paper Scissors</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Modak&family=Maven+Pro"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <script src="./app.js"></script>
-
-  <body></body>
+  <body>
+    <header>
+      <h1>ROCK PAPER SCISSORS</h1>
+    </header>
+    <main>
+      <section class="options-container">
+        <section class="player-container">
+          <div class="score-container">
+            <h4>Player</h4>
+            <p id="player-score"></p>
+          </div>
+          <div class="player-options">
+            <button id="btn-playerPaper">
+              <img class="selectionImg" src="./images/paper.png" />
+            </button>
+            <button id="btn-playerRock">
+              <img class="selectionImg" src="./images/rock.png" />
+            </button>
+            <button id="btn-playerScissors">
+              <img class="selectionImg" src="./images/scissors.png" />
+            </button>
+          </div>
+        </section>
+        <section class="computer-container">
+          <div>
+            <h4>Computer</h4>
+            <p id="computer-score"></p>
+          </div>
+          <div class="computer-options">
+            <button id="btn-computerPaper" disabled>
+              <img class="selectionImg" src="./images/paper.png" />
+            </button>
+            <button id="btn-computerRock" disabled>
+              <img class="selectionImg" src="./images/rock.png" />
+            </button>
+            <button id="btn-computerScissors" disabled>
+              <img class="selectionImg" src="./images/scissors.png" />
+          </button>
+        </section>
+      </section>
+      <section class="main-results">
+        <p id="display-result"></p>
+        <pre id="display-historical"></pre>
+      </section>
+      <section class="modal-container">
+        <div class="modal-endgame">
+          <div class="modal-content">
+            <p id="message-endgame"></p>
+            <button id="btn-restart">PLAY AGAIN</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <small>
+        Copyright ©
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        Mapachin
+      </small>
+    </footer>
+    <script src="./app.js"></script>
+  </body>
 </html>
